@@ -8,11 +8,15 @@ dotenv.config();
 const app = express();
 const PORT = 5000;
 
+//Used to parse user signup input
+app.use(express.json()); 
+
+//routes to signup/login/logout
+app.use("/api/auth", authRoutes);
+
 app.get("/", (req, res) => {
     res.send("Hello World!!!")
 });
-
-app.use("/api/auth", authRoutes)
 
 app.listen(5000, () => {
     connectToMongoDB();
