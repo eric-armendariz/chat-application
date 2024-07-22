@@ -5,12 +5,12 @@ import cookieParser from 'cookie-parser';
 import messageRoutes from './routes/message.routes.js'
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import { app, server } from './socket/socket.js';
 
 import connectToMongoDB from './db/connectToMongoDB.js';
 
 dotenv.config();
 
-const app = express();
 const PORT = 5000;
 
 //Used to parse user signup input
@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!!!")
 });
 
-app.listen(5000, () => {
+server.listen(5000, () => {
     connectToMongoDB();
     console.log(`Server Running on port ${PORT}`)
 });
